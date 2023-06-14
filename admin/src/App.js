@@ -4,7 +4,7 @@ import { CssBaseline,ThemeProvider } from '@mui/material';
 import Topbar from './scenes/global/Topbar'
 import {Routes, Route} from 'react-router-dom';
 import Dashboard from '../src/scenes/dashboard';
-import ProSidebar from './scenes/global/Sidebar';
+import Sidebar from './scenes/global/Sidebar';
 // import Team from './scenes/team';
 // import Invoices from './scenes/invoices';
 // import Contacts from './scenes/contacts';
@@ -24,9 +24,10 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
         <div className="App">
+        <Sidebar isSidebar={isSidebar} />
         <Topbar setIsSidebar={setIsSidebar} />
           <main className="content">
-          <ProSidebar isSidebar={isSidebar} />
+          
           
             <Routes >
               <Route path="/" element={<Dashboard />} />
