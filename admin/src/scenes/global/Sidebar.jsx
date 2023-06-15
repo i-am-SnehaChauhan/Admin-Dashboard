@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
+import {Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 //import 'react-pro-sidebar/dist/css/styles.css';
 import { Box, IconButton, Typography, useTheme } from '@mui/material';
 import { Link } from 'react-router-dom';
@@ -34,14 +34,14 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
   );
 };
 
-const Sidebar = () => {
+const ProSidebar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState('Dashboard');
 
   return (
-    <Box
+    <Box 
       sx={{
         "& .pro-sidebar": {
           background: `${colors.primary[700]} !important`,
@@ -61,7 +61,7 @@ const Sidebar = () => {
         }
       }}
     >
-      <ProSidebar collapsed={isCollapsed}>
+      <Sidebar collapsed={isCollapsed} style={{backgroundColor: colors.primary[400]}}>
         <Menu iconShape="square">
           {/* LOGO AND MENU ICON */}
           <MenuItem
@@ -91,7 +91,7 @@ const Sidebar = () => {
 
           {/* USERS*/}
           {!isCollapsed && (
-            <Box mb="25px">
+            <Box mb="15px">
               <Box display="flex" alignItems="center" justifyContent="center">
                 <img
                   alt='profile-user'
@@ -116,9 +116,91 @@ const Sidebar = () => {
               </Box>
             </Box>
           )}
+          {/* Menu  Items*/}
+          <Box paddingLeft={isCollapsed ? undefined : "10px"}>
+            <Item 
+              title="Dashboard" 
+              to="/dashboard" 
+              icon={<HomeOutlinedIcon />} 
+              selected={selected} 
+              setSelected={setSelected} 
+            />
+            <Item
+              title="Manage Team"
+              to="/team"
+              icon={<PeopleOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Contacts Information"
+              to="/contacts"
+              icon={<ContactsOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Invoices Balances"
+              to="/invoices"
+              icon={<ReceiptOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Profile Form"
+              to="/profile"
+              icon={<PersonOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Calendar"
+              to="/calendar"
+              icon={<HelpOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="FAQ Page"
+              to="/faq"
+              icon={<BarChartOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Bar Chart"
+              to="/bar"
+              icon={<BarChartOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Pie Chart"
+              to="/pie"
+              icon={<PieChartOutlinedOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Line Chart"
+              to="/line"
+              icon={<TimelineOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Geographical Chart"
+              to="/geography"
+              icon={<MapOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+
+          </Box>
       </Menu>
-    </ProSidebar>
+    </Sidebar>
 </Box>
   );
 };
-export default Sidebar;
+export default ProSidebar;
