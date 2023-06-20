@@ -28,8 +28,9 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
       onClick={() => setSelected(title)}
       icon={icon}
     >
+      <Link to={to} >
       <Typography>{title}</Typography>
-      <Link to={to} />
+      </Link>
     </MenuItem>
   );
 };
