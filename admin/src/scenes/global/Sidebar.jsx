@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
-//import 'react-pro-sidebar/dist/css/styles.css';
 import { Box, IconButton, Typography, useTheme } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { tokens } from '../../theme';
@@ -19,6 +18,10 @@ import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const linkStyle = {
+    textDecoration: 'none', // This will remove the underline from the links
+    color: colors.grey[100], // Setting the color of the links
+  };
   return (
     <MenuItem
       active={selected === title}
@@ -28,11 +31,13 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
       onClick={() => setSelected(title)}
       icon={icon}
     >
+      <Link to={to} style={linkStyle}>
       <Typography>{title}</Typography>
-      <Link to={to} />
+      </Link>
     </MenuItem>
   );
 };
+
 
 const ProSidebar = () => {
   const theme = useTheme();
@@ -41,12 +46,11 @@ const ProSidebar = () => {
   const [selected, setSelected] = useState('Dashboard');
 
   return (
-    <Box 
+    <Box
       sx={{
         "& .pro-sidebar-inner": {
           background: `${colors.primary[400]} !important`,
         },
-
         "& .pro-icon-wrapper": {
           backgroundColor: "transparent !important",
         },
@@ -54,11 +58,11 @@ const ProSidebar = () => {
           padding: "5px 35px 5px 20px !important",
         },
         "& .pro-inner-item:hover": {
-          color: "#868dfb !important",
+          color: colors.primary[100] + " !important",
         },
         "& .pro-menu-item:active": {
-          color: "#6870fa !important",
-        }
+          color: colors.primary[200] + " !important",
+        },
       }}
     >
       <Sidebar collapsed={isCollapsed} style={{backgroundColor: colors.blueAccent[900]}}>
